@@ -37,6 +37,7 @@
               "src/styles.scss",
               "src/assets/app.scss",
               "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
             "scripts": [

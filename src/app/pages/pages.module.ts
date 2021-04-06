@@ -7,8 +7,11 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { FaqComponent } from './faq/faq.component';
 import { ErrorPagesComponent } from './error-pages/error-pages.component';
 import { LoginComponent } from './login/login.component';
+
+//forms
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//image carousel
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
@@ -23,6 +26,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     //for Images
     SlickCarouselModule,
     
+  ],
+  //export component to use in other modules
+  exports:[
+    ErrorPagesComponent
   ]
 })
 export class PagesModule { }

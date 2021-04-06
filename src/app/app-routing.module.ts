@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MainComponent } from './main/main.component';
+import { ErrorPagesComponent } from './pages/error-pages/error-pages.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home/shop',pathMatch:'full'},
@@ -16,7 +17,12 @@ const routes: Routes = [
   },
 
   //LANDING PAGE
-  {path:'landingpage', component:LandingPageComponent}
+  {path:'landingpage', component:LandingPageComponent},
+
+
+  //FOR ERROR404
+  //for any unmatching route redirect to this page
+  {path:'**',component:ErrorPagesComponent}
 ];
 
 @NgModule({
