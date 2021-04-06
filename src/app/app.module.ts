@@ -19,7 +19,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SharedModule } from './shared/shared.module';
 
 //Http Client 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HeaderInterceptor } from './shared/interceptors/header-interceptor.service';
+import { ResponseInterceptor } from './shared/interceptors/response-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,12 @@ import {HttpClientModule} from '@angular/common/http';
     //Toastr notifications
     ToastrModule.forRoot()
   ],
-  providers: [],
+  //Provide interceptors used here
+  //Interceptors (multi => multiple interceptors)
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:HeaderInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ResponseInterceptor,multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

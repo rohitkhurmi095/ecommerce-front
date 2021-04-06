@@ -1,1 +1,72 @@
-<p>menu-left works!</p>
+<!--=====================------------>
+<!-- MENU LEFT (SIDEBAR) :VERTICAL -->
+<!--=====================------------>
+<!-- class mega-menu clothing-menu is applied on mega-menu -->
+
+<!-------------------->
+<!-- 1st Level Menu -->
+<!-------------------->
+<!-- Sample menu definition -->
+<!-- SMART MENU SCRIPT LOADED on id:sub-menu-->
+<ul id="sub-menu" class="sm pixelstrap sm-vertical">
+    <li *ngFor="let menuItem of menuItems">
+        <!-- Sub -->
+        <a href="javascript:void(0)" *ngIf="menuItem.type==='sub'">
+            {{menuItem.title}}
+        </a>
+        <!-- Link -->
+        <a *ngIf="menuItem.type==='link'" [routerLink]="!menuItem.type?null:[menuItem.path]">
+            {{menuItem.title}}
+        </a>
+
+        
+        <!-------------------->
+        <!-- 2nd Level Menu -->
+        <!-------------------->
+        <!-- Apply class: 'mega-menu clothing-menu' on megaMenu -->
+        <ul *ngIf="menuItem.children" [class]="menuItem.megaMenu?'mega-menu clothing-menu':'' " >
+
+            <!-- Simple Menu Start-->
+            <!-- No megaMenu -->
+            <ng-container *ngIf="!menuItem.megaMenu">
+                <li *ngFor="let childrenItem of menuItem.children">
+                    <!-- Link -->
+                    <a *ngIf="childrenItem.type==='link'" [routerLink]="!childrenItem.type?null:[childrenItem.path]">
+                        {{childrenItem.title}}
+                    </a>
+                </li>
+            </ng-container>
+            <!-- Simple Menu End-->
+
+            
+            <!-------------------->
+            <!-- Mega Menu Start-->
+            <!-------------------->
+            <!-- Show image in megaMenu-->
+            <ng-container *ngIf="menuItem.megaMenu">
+                <li>
+                    <div class="row m-0">
+                        <div class="col-xl-4" *ngFor="let childrenItem of menuItem.children">
+                            <div class="link-section">
+                                <h5>{{childrenItem.title}}</h5>
+                                <ul>
+                                    <li *ngFor="let childrenSubItem of childrenItem.children">
+                                        <!-- Link -->
+                                        <a *ngIf="childrenSubItem.type==='link'" [routerLink]="!childrenSubItem.type?null:[childrenSubItem.path]">
+                                            {{childrenSubItem.title}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <a [routerLink]="['/home/shop']" class="mega-menu-banner">
+                                <img src="assets/images/mega-menu/bag.jpg" alt="bag" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </li>
+            </ng-container>
+            <!--Large  Mega Menu End-->
+        </ul>
+    </li>
+</ul>

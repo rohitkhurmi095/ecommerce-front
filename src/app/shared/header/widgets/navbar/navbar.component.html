@@ -1,1 +1,96 @@
-<p>navbar works!</p>
+<!--=======================-->
+<!-- NAVBAR(SmartMenu)     -->
+<!--=======================-->
+<!-- RIGHT SIDE SMART MENU(HORIZONTAL)-->
+
+
+<nav id="main-nav">
+
+    <!-- MOBILE TOGGLER-->
+    <!--===============-->
+    <div class="toggle-nav">
+        <i class="fa fa-bars sidebar-bar"></i>
+    </div>
+
+    <!-- MENU DEFINATION -->
+    <!--=================-->
+    <!-- Sample menu definition -->
+    <!-- SMART MENU SCRIPT LOADED on id:main-menu-->
+    <ul id="main-menu" class="sm  pixelstrap sm-horizontal">
+        <li>
+            <div class="mobile-back text-right">
+              Back<i class="fa fa-angle-right pl-2" aria-hidden="true"></i>
+            </div>
+        </li>
+        
+        <!-------------------->
+        <!-- 1st Level Menu -->
+        <!-------------------->
+        <li *ngFor="let menuItem of menuItems" [class]="menuItem.megaMenu ? 'mega' : ''" [id]="menuItem.megaMenuType == 'large' ? 'hover-cls' : ''">
+            <!-- Sub -->
+            <a href="javascript:void(0)" *ngIf="menuItem.type === 'sub'">
+                {{menuItem.title}}
+            </a>
+            <!-- Link -->
+            <a  *ngIf="menuItem.type === 'link'" [routerLink]="!menuItem.type ? null : [menuItem.path]">
+                {{menuItem.title}}
+            </a>
+
+            <!-------------------->
+            <!-- 2nd Level Menu -->
+            <!-------------------->
+            <ul *ngIf="menuItem.children" [class]="menuItem.megaMenu && menuItem.megaMenuType == 'small' ? 'mega-menu feature-menu' : menuItem.megaMenuType == 'medium' ? 'mega-menu feature-menu product-menu' : menuItem.megaMenuType == 'large' ? 'mega-menu full-mega-menu' : '' " [id]="'mega-menu'">
+
+                <!-- Simple Menu Start-->
+                <!-------------------->
+                <!-- Mega Menu Start-->
+                <!-------------------->
+                <ng-container *ngIf="menuItem.megaMenu && menuItem.megaMenuType == 'large'">
+                    <li>
+
+                      <div class="container">
+                        <div class="row">
+                          <div class="col mega-box" *ngFor="let childrenItem of menuItem.children">
+                            <div class="link-section">
+                              <div class="menu-title">
+                                <h5>{{childrenItem.title}}</h5>
+                              </div>
+                              <div class="menu-content">
+                                <ul>
+                                  <li *ngFor="let childrenSubItem of childrenItem.children">
+                                    <!-- Link -->
+                                    <a [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path]" *ngIf="childrenSubItem.type === 'link'">
+                                      {{childrenSubItem.title}}
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!------------------------------------>
+                      <!-- MEGA MENU BANNERS (MENS/WOMENS)-->
+                      <!------------------------------------>
+                      <div class="row banner-padding">
+                        <div class="col-xl-6">
+                          <a [routerLink]="'/home/left-sidebar/collection/all'" class="mega-menu-banner">
+                            <img src="assets/images/mega-menu/2.jpg" class="img-fluid d-none d-xl-block " alt="">
+                          </a>
+                        </div>
+                        <div class="col-xl-6">
+                          <a [routerLink]="'/home/left-sidebar/collection/all'" class="mega-menu-banner">
+                            <img src="assets/images/mega-menu/1.jpg" class="img-fluid d-none d-xl-block" alt="">
+                          </a>
+                        </div>
+                      </div>
+
+                    </li>
+                </ng-container>
+                <!-- Large Mega Menu End-->
+              </ul>
+          </li>    
+      </ul>
+</nav>
+              

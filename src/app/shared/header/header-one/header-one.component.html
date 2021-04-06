@@ -1,1 +1,84 @@
-<p>header-one works!</p>
+<!--============-->
+<!-- HEADER     -->
+<!--============-->
+
+
+<header id="sticky" class="sticky">
+    <div class="mobile-fix-option"></div>
+    <div class="top-header">
+        <div class="container">
+            <!---------------------------->
+            <!-- TOPBAR WIDGET COMPONENT-->
+            <!---------------------------->
+            <app-topbar></app-topbar>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main-menu">
+                    <div class="menu-left">
+                        <!-- NAVBAR -->
+                        <!-- add class open-side to div with id="mySidenav" to open sidebar-->
+                        <!-- remove class open-side to div with id="mySidenav" to close sidebar-->
+                        <!-- methods to add this class are wiritten in landing-fix.Service-->
+                        <div class="navbar">
+                            <!--===== OPEN SIDEBAR =====-->
+                            <a (click)="openNav()">
+                                <div class="bar-style">
+                                    <i class="fa fa-bars sidebar-bar" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <div id="mySidenav" class="sidenav">
+                                <!--====== CLOSE SIDEBAR ======-->
+                                <a class="sidebar-overlay" (click)="closeNav()"></a>
+                                    <nav>
+                                        <!-- BACK(close Sidebar)-->
+                                        <div  (click)="closeNav()">
+                                            <div class="sidebar-back text-left">
+                                                <i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Back
+                                            </div>
+                                        </div>
+                                    
+                                        <!-------------------------------------->
+                                        <!-- LEFT MENUBAR Component (SIDEBAR) -->
+                                        <!-------------------------------------->
+                                        <!-- Menu Integration-->
+                                        <app-menu-left></app-menu-left>
+                                    </nav>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-logo">
+                            <a routerLink="/home/shop">
+                                <img src="assets/images/icon/logo.png" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-right pull-right">
+                        <div>
+                            <!---------------------------------------------->
+                            <!-- 2nd TOPBAR :NAVBAR Component (SMART MENU)-->
+                            <!---------------------------------------------->
+                            <!-- RIGHT SIDE SMART MENU-->
+                            <!-- Menu Integration -->
+                            <app-navbar></app-navbar>
+                        </div>
+                        
+                        <div>   
+                            <!---------------------------->
+                            <!-- TOPBAR WIDGET COMPONENT-->
+                            <!---------------------------->
+                            <app-settings></app-settings>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

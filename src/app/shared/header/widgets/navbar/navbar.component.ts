@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+//Menu Type
+import {Menu} from './menu';
+//MenuItems
+import {NAVITEMS} from './navbar-items';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+   //variables to assign menuItems
+   menuItems:Menu[] = [];
 
-  ngOnInit(): void {
-  }
+   constructor(){};
 
+   ngOnInit(): void {
+     //dynamic BINDINGmenuItems
+     this.menuItems = NAVITEMS;
+   }
+  
 }

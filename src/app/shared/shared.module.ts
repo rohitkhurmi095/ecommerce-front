@@ -20,6 +20,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule
-  ]
+  ],
+  //to use component in outside module
+  exports:[HeaderOneComponent,FooterOneComponent]
 })
 export class SharedModule { }
