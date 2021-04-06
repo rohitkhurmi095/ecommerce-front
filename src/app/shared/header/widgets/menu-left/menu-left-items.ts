@@ -21,24 +21,24 @@ export const MENUITEMS:Menu[] = [
     {title:'clothing',type:'sub',megaMenu:true,
         children:[
             //MENS FASHION
-            {title:'mens fashion',type:'link',
+            {title:'mens-fashion',type:'link',
                 children:[
-                  {path:'/home/left-sidebar/collection/all', title:'sports wear', type:'link'},
-                  {path:'/home/left-sidebar/collection/all', title:'top wear', type:'link'},
-                  {path:'/home/left-sidebar/collection/all', title:'bottom wear', type:'link'},
-                  {path:'/home/left-sidebar/collection/all', title:'ethic wear', type:'link'},
+                  {path:'/home/left-sidebar/collection/all', title:'sports-wear', type:'link'},
+                  {path:'/home/left-sidebar/collection/all', title:'top-wear', type:'link'},
+                  {path:'/home/left-sidebar/collection/all', title:'bottom-wear', type:'link'},
+                  {path:'/home/left-sidebar/collection/all', title:'ethic-wear', type:'link'},
                   {path:'/home/left-sidebar/collection/all', title:'shirts', type:'link'},
                 ]
             },
             //WOMENS FASHION (has megaMenu for image)
-            {title:'womens fashion',type:'link',megaMenu:true,
+            {title:'womens-fashion',type:'link',megaMenu:true,
                 children:[  
                   {path:'/home/left-sidebar/collection/all',title:'dresses',type:'link'},
                   {path:'/home/left-sidebar/collection/all',title:'skirts',type:'link'},
-                  {path:'/home/left-sidebar/collection/all',title:'westarn wear',type:'link'},
-                  {path:'/home/left-sidebar/collection/all',title:'ethic wear',type:'link'},
-                  {path:'/home/left-sidebar/collection/all',title:'bottom wear',type:'link'},
-                  {path:'/home/left-sidebar/collection/all',title:'sports wear',type:'link'}
+                  {path:'/home/left-sidebar/collection/all',title:'westarn-wear',type:'link'},
+                  {path:'/home/left-sidebar/collection/all',title:'ethic-wear',type:'link'},
+                  {path:'/home/left-sidebar/collection/all',title:'bottom-wear',type:'link'},
+                  {path:'/home/left-sidebar/collection/all',title:'sports-wear',type:'link'}
                 ]
             }
         ] 

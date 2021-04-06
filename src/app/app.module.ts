@@ -18,10 +18,24 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 //modules
 import { SharedModule } from './shared/shared.module';
 
-//Http Client 
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+//Interceptors
 import { HeaderInterceptor } from './shared/interceptors/header-interceptor.service';
 import { ResponseInterceptor } from './shared/interceptors/response-interceptor.service';
+
+
+//---- ngx-TRANSLATOR ------------ 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+//Http Client
+import {HttpClientModule,HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
+
+//Translator file path(JSON) required for AOT Compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http,"./assets/i18n/",".json");
+}
+//---------------------------------
+
 
 @NgModule({
   declarations: [
@@ -40,7 +54,17 @@ import { ResponseInterceptor } from './shared/interceptors/response-interceptor.
     ReactiveFormsModule,
 
     //Toastr notifications
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
+    //for Translator
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+
   ],
   //Provide interceptors used here
   //Interceptors (multi => multiple interceptors)

@@ -12,11 +12,11 @@
     <li *ngFor="let menuItem of menuItems">
         <!-- Sub -->
         <a href="javascript:void(0)" *ngIf="menuItem.type==='sub'">
-            {{menuItem.title}}
+            {{menuItem.title | translate }}
         </a>
         <!-- Link -->
         <a *ngIf="menuItem.type==='link'" [routerLink]="!menuItem.type?null:[menuItem.path]">
-            {{menuItem.title}}
+            {{menuItem.title | translate}}
         </a>
 
         
@@ -32,7 +32,7 @@
                 <li *ngFor="let childrenItem of menuItem.children">
                     <!-- Link -->
                     <a *ngIf="childrenItem.type==='link'" [routerLink]="!childrenItem.type?null:[childrenItem.path]">
-                        {{childrenItem.title}}
+                        {{childrenItem.title | translate}}
                     </a>
                 </li>
             </ng-container>
@@ -48,12 +48,12 @@
                     <div class="row m-0">
                         <div class="col-xl-4" *ngFor="let childrenItem of menuItem.children">
                             <div class="link-section">
-                                <h5>{{childrenItem.title}}</h5>
+                                <h5>{{childrenItem.title | translate}}</h5>
                                 <ul>
                                     <li *ngFor="let childrenSubItem of childrenItem.children">
                                         <!-- Link -->
                                         <a *ngIf="childrenSubItem.type==='link'" [routerLink]="!childrenSubItem.type?null:[childrenSubItem.path]">
-                                            {{childrenSubItem.title}}
+                                            {{childrenSubItem.title | translate}}
                                         </a>
                                     </li>
                                 </ul>

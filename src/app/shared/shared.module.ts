@@ -15,11 +15,15 @@ import { WhyWeChooseComponent } from './footer/widgets/why-we-choose/why-we-choo
 //To use routing in shared module (RouterLink,routerOutlet: router directives)
 import { RouterModule } from '@angular/router';
 
+//Translate Module: to use translator as a pipe
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [HeaderOneComponent, TopbarComponent, SettingsComponent, MenuLeftComponent, NavbarComponent, FooterOneComponent, InformationComponent, SocialComponent, CategoriesComponent, CopyrightsComponent, WhyWeChooseComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslateModule //Translate Module
   ],
   //to use component in outside module
   exports:[HeaderOneComponent,FooterOneComponent]

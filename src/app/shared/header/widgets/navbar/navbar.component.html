@@ -29,11 +29,11 @@
         <li *ngFor="let menuItem of menuItems" [class]="menuItem.megaMenu ? 'mega' : ''" [id]="menuItem.megaMenuType == 'large' ? 'hover-cls' : ''">
             <!-- Sub -->
             <a href="javascript:void(0)" *ngIf="menuItem.type === 'sub'">
-                {{menuItem.title}}
+                {{menuItem.title | translate}}
             </a>
             <!-- Link -->
             <a  *ngIf="menuItem.type === 'link'" [routerLink]="!menuItem.type ? null : [menuItem.path]">
-                {{menuItem.title}}
+                {{menuItem.title | translate}}
             </a>
 
             <!-------------------->
@@ -53,14 +53,14 @@
                           <div class="col mega-box" *ngFor="let childrenItem of menuItem.children">
                             <div class="link-section">
                               <div class="menu-title">
-                                <h5>{{childrenItem.title}}</h5>
+                                <h5>{{childrenItem.title | translate}}</h5>
                               </div>
                               <div class="menu-content">
                                 <ul>
                                   <li *ngFor="let childrenSubItem of childrenItem.children">
                                     <!-- Link -->
                                     <a [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path]" *ngIf="childrenSubItem.type === 'link'">
-                                      {{childrenSubItem.title}}
+                                      {{childrenSubItem.title | translate}}
                                     </a>
                                   </li>
                                 </ul>
