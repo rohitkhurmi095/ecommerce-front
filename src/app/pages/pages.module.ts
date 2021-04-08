@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //image carousel
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+//for API Path
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     ReactiveFormsModule,
     //for Images
     SlickCarouselModule,
+    //For API Path
+    SharedModule
     
   ],
   //export component to use in other modules

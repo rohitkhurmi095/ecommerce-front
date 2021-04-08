@@ -7,4 +7,5 @@ export class Global{
 
     //for live server
     public static BASE_APT_PATH = "http://sahosoftweb.com/api/";
+  static BASE_API_PATH: string;
 }
