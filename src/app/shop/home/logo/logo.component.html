@@ -1,1 +1,27 @@
-<p>logo works!</p>
+<!--===================-->
+<!-- Logo Component    -->
+<!--===================-->
+<section class="section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               
+                <!-------------------->
+                <!-- IMAGE CAROUSEL -->
+                <!-------------------->
+                <!-- class="logo-block" : makes logo grey-->
+                <ngx-slick-carousel class="no-arrow" #slickModal="slick-carousel" [config]="logoSliderConfig">
+                    <div ngxSlickItem *ngFor="let lg of logo">
+                        <div class="logo-block">
+                            <a routerLink="/home/shop">
+                                <img [src]="lg.imagePath" alt="brand logo" width="100px" height="100px">
+                            </a>
+                        </div>
+                    </div>
+                </ngx-slick-carousel>
+                <!--------------------->
+
+            </div>
+        </div>
+    </div>
+</section>

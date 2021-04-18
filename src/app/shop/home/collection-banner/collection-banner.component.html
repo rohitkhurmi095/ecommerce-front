@@ -1,1 +1,23 @@
-<p>collection-banner works!</p>
+<!--===================-->
+<!-- COLLECTION BANNER -->
+<!--===================-->
+<!-- CATEGORIES -->
+<section class="pb-0">
+    <div class="container">
+        <div class="row partition2">
+            <div class="col-md-6" *ngFor="let catg of category">
+                <a [routerLink]="catg.link">
+                    <div class="collection-banner p-right text-center">
+                        <img class="img-fluid" alt="{{catg.title}}" [src]="catg.imagePath">
+                        <div class="contain-banner">
+                            <div>
+                                <h4>Save {{catg.isSave}}%</h4>
+                                <h2>{{catg.title}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

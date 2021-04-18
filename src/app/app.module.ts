@@ -69,8 +69,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   //Provide interceptors used here
   //Interceptors (multi => multiple interceptors)
   providers: [
-    //{provide: HTTP_INTERCEPTORS, useClass:HeaderInterceptor,multi:true},
-    //{provide: HTTP_INTERCEPTORS, useClass:ResponseInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:HeaderInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ResponseInterceptor,multi:true},
   ],
   bootstrap: [AppComponent]
 })

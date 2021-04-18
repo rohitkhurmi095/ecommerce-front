@@ -1,1 +1,64 @@
-<p>product-tab works!</p>
+<!--==============-->
+<!-- PRODUCT TAB  -->
+<!--==============-->
+<div class="title1 section-t-space">
+    <h4>exclusive products</h4>
+    <h2 class="title-inner1">special products</h2>
+</div>
+    
+<section class="section-b-space p-t-0">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="theme-tab">
+                    
+                    <!--------------->
+                    <!-- TAB LINKS -->
+                    <!--------------->
+                    <ul class="tabs tab-title">
+                        <li class="current">
+                            <a href="tab-1">New Products</a>
+                        </li>
+                        <li class="">
+                            <a href="tab-2">Best Sellers</a>
+                        </li>
+                    </ul>
+
+                    <!------------------->
+                    <!--- TABS CONTENT -->
+                    <!------------------->
+                    <div class="tab-content-cls">
+
+                        <!-- Note: here we used single API (allProducts) for both tabs-->
+                        <!-- We may use different APIS if available -->
+
+                        <!-- Tab1: NEW PRODUCTS (products:0-8)-->
+                        <!--__________________________________-->
+                        <div class="tab-content active default" id="tab-1">
+                            <div class="no-slider row">
+                                <!-- show only 8 products NOT all products USE {slice:i:n Pipe} i=0 to i=n-->
+                                <div class="product-box" *ngFor="let product of products | slice:0:8">
+                                    <!-- pass single product data to product component-->
+                                    <app-product [product]="product"></app-product>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tab2:BEST SELLERS (proudcts:8-16)-->
+                        <!--__________________________________-->
+                        <div class="tab-content" id="tab-2">
+                            <div class="no-slider row">
+                                <!-- show only 8 products NOT all products USE {slice:i:n Pipe} i=0 to i=n-->
+                                <div class="product-box" *ngFor="let product of products | slice:8:16">
+                                    <!-- pass single product data to product component-->
+                                    <app-product [product]="product"></app-product>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

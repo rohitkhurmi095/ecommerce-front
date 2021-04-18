@@ -26,11 +26,7 @@ export class DataService {
 
     const body = JSON.stringify(model);
 
-    let httpHeaders = new HttpHeaders().set('Content-Type','application/json');
-
-    return this.http.post(url,body,{
-      headers:httpHeaders
-    });
+    return this.http.post(url,body);
   }
 
 
@@ -44,7 +40,7 @@ export class DataService {
   //=> avoid set headers for images in interceptors
   postImages(url:string,model:any):Observable<any>{
 
-    //let httpHeaders = new HttpHeaders().set('isImage','');
+    let httpHeaders = new HttpHeaders().set('isImage','');
 
     return this.http.post(url,model);
   }
@@ -58,11 +54,7 @@ export class DataService {
 
     const body = JSON.stringify(model);
 
-    let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-
-    return this.http.put(url + id,body,{
-      headers:httpHeaders
-    });
+    return this.http.put(url + id,body);
   }
 
   
@@ -71,11 +63,7 @@ export class DataService {
   //===============
   delete(url:string,id:number):Observable<any>{
 
-    let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-
-    return this.http.delete(url + id,{
-      headers:httpHeaders
-    });
+    return this.http.delete(url + id);
   }
 
 

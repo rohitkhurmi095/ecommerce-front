@@ -23,12 +23,35 @@ import { BrandComponent } from './product/collection/filter/brand/brand.componen
 import { ColorComponent } from './product/collection/filter/color/color.component';
 import { PriceComponent } from './product/collection/filter/price/price.component';
 
+//forms Modules
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//for API
+import { SharedModule } from '../shared/shared.module';
+
+//----- other libraries -----
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { BarRatingModule } from 'ngx-bar-rating';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { Ng5SliderModule } from 'ng5-slider';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 @NgModule({
   declarations: [HomeComponent, ProductComponent, LogoComponent, CollectionBannerComponent, ParallaxBannerComponent, SliderComponent, ProductSliderComponent, ProductTabComponent, CartComponent, WishlistComponent, CheckoutComponent, ProductCompareComponent, ProductLeftSidebarComponent, SuccessComponent, CategoriesComponent, NewProductComponent, CollectionLeftSidebarComponent, BrandComponent, ColorComponent, PriceComponent],
   imports: [
     CommonModule,
-    ShopRoutingModule
+    ShopRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    //----- other libraries -----
+    Ng5SliderModule,
+    NgxSliderModule,
+    InfiniteScrollModule,
+    BarRatingModule,
+    NgxImageZoomModule,
+    SlickCarouselModule
   ]
 })
 export class ShopModule { }

@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SliderComponent implements OnInit {
 
+  //=====================
+  // IMAGE SLIDER Config
+  //=====================
+  sliderConfig:any = {
+    autoplay:true,
+    autoplaySpeed:3000
+  }
+  //---------------------
+
   constructor() { }
 
   ngOnInit(): void {

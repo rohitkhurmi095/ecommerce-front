@@ -42,7 +42,7 @@ export class ProductsService {
   //------------------------------------------------------
   //allProdducts()
   private allProducts():Observable<Product[]>{
-    let data = this.dataService.get(Global.BASE_API_PATH + "ProductMaster/GetProductList");
+    let data = this.dataService.get(Global.BASE_APT_PATH + "ProductMaster/GetProductList");
     return data;
   }
 
