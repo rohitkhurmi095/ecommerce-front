@@ -1,1 +1,82 @@
-<p>product works!</p>
+<!--==================-->
+<!-- PRODUCT COMPONENT-->
+<!--==================-->
+
+<div class="img-wrapper">
+    <div class="lable-block">
+        <span class="lable3" *ngIf="product.isNew">new</span>
+        <span class="lable4" *ngIf="product.isSale">on sale</span>
+    </div>
+    
+    <!---------------------->
+    <!-- THUMBNAIL IMAGE -->
+    <!---------------------->
+    <div class="front">
+        <a [routerLink]="['/home/left-sidebar/product',product.id]">
+            <img class="img-fluid" [src]="!variantImage? product.pictures[0]:variantImage" alt="product image">
+        </a>
+    </div>
+    
+    <!------------------------------->
+    <!-- PRODUCT VARIANTS (Images) -->
+    <!------------------------------->
+    <ul class="product-thumb-list">
+        <li class="grid_thumb_img" *ngFor="let variant of product.variants" 
+                    [ngClass]="{'active' : selectedImage === variant.images}">
+            <a (click)="changeVairantImage(variant.images)">
+                <img [src]="variant.images">
+            </a>
+        </li>
+    </ul>
+    
+    
+    <!---------------------->
+    <!-- SERVICE METHODS -->
+    <!---------------------->
+    <div class="cart-info cart-wrap">
+        <!-- ADD TO CART -->
+        <!--_____________-->
+        <a title="Add to cart" (click)="addToCart(product)">
+            <i class="ti-shopping-cart"></i>
+        </a>
+        <!-- ADD TO WISHLIST -->
+        <!--_________________-->
+        <a title="Add to Wishlist" (click)="addToWishlist(product)">
+            <i class="ti-heart" aria-hidden="true"></i>
+        </a>
+        <!-- DETAILS -->
+        <!--_________-->
+        <a title="Quick View" [routerLink]="['/home/left-sidebar/product',product.id]">
+            <i class="ti-search" aria-hidden="true"></i>
+        </a>
+        <!-- ADD TO COMPARE -->
+        <!--________________-->
+        <a title="Compare" (click)="addToCompare(product)" routerLink="/home/compare">
+            <i class="ti-reload" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+
+
+<!---------------------->
+<!-- PRODUCT DETAILS  -->    
+<!---------------------->
+<div class="product-detail">
+    <div>
+        
+        <!--================-->
+        <!--Show bar rating -->
+        <!--================-->
+        <bar-rating [readOnly] [rate]="5"></bar-rating>
+        <!-------------------->
+
+        <!-- /home/left-sidebar/product/:id -->
+        <a [routerLink]="['/home/left-sidebar/product',product.id]">
+            <h6> {{product.name}} </h6>
+        </a>
+        <h4> ₹{{product.price}}
+            <del><span class="money"> ₹{{product.salePrice }} </span></del>
+        </h4>
+    </div>
+</div>

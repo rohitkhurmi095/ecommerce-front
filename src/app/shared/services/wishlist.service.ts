@@ -13,8 +13,8 @@ import {Product} from '../classes/product';
 // METHODS
 //----------------------------
 //get wishlist items
-//Add product to cart
-//Remove product from cart
+//Add product to wishlist
+//Remove product from wishlist
 //============================
 
 @Injectable({
@@ -25,7 +25,7 @@ export class WishlistService {
   //------------------------------------------------------------------------
   //Anything added to wishList -> kept in localStorage (as string)
   //get products from wishlistDetails (in localStorage) as object -> JSON.parse()
-  products = JSON.parse(localStorage.getItem("wishlistItem") || '{}') || [];
+  products = JSON.parse(localStorage.getItem("wishlistItem")) || [];
 
   //------------------------------------------------------------------------
 

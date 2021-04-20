@@ -14,7 +14,7 @@ import * as $ from 'jquery';
 export class ProductTabComponent implements OnInit {
 
   //receiving data(products) from homeComponent
-  @Input() products:Product[];
+  @Input() products:Product[] = [];
 
   constructor() { }
 

@@ -11,7 +11,7 @@ import {Product} from '../../../shared/classes/product';
 export class ProductSliderComponent implements OnInit {
 
   //receiving data(products) from homeComponent
-  @Input() products:Product[];
+  @Input() products:Product[] = [];
 
   //===================
   // IMAGE CAROUSEL

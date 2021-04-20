@@ -27,11 +27,11 @@ export class CartService {
   //------------------------------------------------------------------------
   //Anything added to cart -> kept in localStorage (as string)
   //get products from cartDetails (in localStorage) as object -> JSON.parse()
-  products = JSON.parse(localStorage.getItem("cartItem") || '{}') || [];
+  products = JSON.parse(localStorage.getItem("cartItem")) || [];
   
   //CART_ITEM: behaviour subject of type cartItem : [] initially
   //change in 1 component -> gets updated in all components
-  cartItems: BehaviorSubject<cartItem[]> = new BehaviorSubject([]);
+  cartItems: BehaviorSubject<cartItem[]> = new BehaviorSubject<cartItem[]>([]);
   //------------------------------------------------------------------------
 
   //toastr notification
@@ -73,28 +73,6 @@ export class CartService {
 
 
 
-  //=========================
-  // CALCULATE STOCK COUNTS
-  //=========================
-  //quantity = cartItem.quantity
-  //stock = cartItem.product.stock 
-
-  calculateStockCounts(item:cartItem, quantity:number){
-    let qty = item.quantity;
-    let stock = item.product.stock;
-
-    //if quantity < stock 
-    if(qty < stock){
-      //toastr notification
-      this.toastr.error("You cannot add more item in cart !!", "Cart");
-      return false;
-    }
-    return true;
-  }
-
-
-
-
   //====================
   // ADD ITEM TO CART
   //====================
@@ -117,14 +95,14 @@ export class CartService {
 
       if(item.product.id == product.id){
 
-        console.log(this.products);
-        console.log(this.products[index]);
-        console.log(this.products[index].quantity);
+        //console.log(this.products);
+        //console.log(this.products[index]);
+        //console.log(this.products[index].quantity);
         
         //update quantity (Add new quantity to old quantity value)
         let qty:number = this.products[index].quantity + quantity;
         //calculate stocks
-        let stock = this.calculateStockCounts(product[index],qty);
+        let stock = this.calculateStockCounts(this.products[index],quantity);
 
         //if quantity!= 0 & stock is there
         if(qty!=0 && stock){
@@ -191,7 +169,7 @@ export class CartService {
         //update quantity (Add new quantity to old quantity value)
         let qty:number = this.products[index].quantity + quantity;
         //calculate stocks
-        let stock = this.calculateStockCounts(product[index],qty);
+        let stock = this.calculateStockCounts(this.products[index],quantity);
 
         //if quantity!= 0 & stock is there
         if(qty!=0 && stock){
@@ -202,7 +180,7 @@ export class CartService {
           localStorage.setItem("cartItem",JSON.stringify(this.products));
 
           //toastr notification
-          this.toastr.success("Product quantity added to cart !!", "Cart");
+          this.toastr.info("Product quantity Updated in cart !!", "Cart");
         }
         return true;
       }
@@ -212,6 +190,26 @@ export class CartService {
 
 
 
+  //=========================
+  // CALCULATE STOCK COUNTS
+  //=========================
+  //quantity = cartItem.quantity
+  //stock = cartItem.product.stock 
+
+  calculateStockCounts(item:cartItem, quantity:number){
+    let qty = item.quantity + quantity;
+    let stock = item.product.stock;
+
+    //if quantity > stock 
+    if(stock < qty){
+      //toastr notification
+      this.toastr.error("You cannot add more item in cart !!", "Cart");
+      return false;
+    }
+    return true;
+  }
+
+  
 
   //========================
   // REMOVE ITEM FROM CART

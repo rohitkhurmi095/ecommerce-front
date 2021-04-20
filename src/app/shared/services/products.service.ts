@@ -30,7 +30,7 @@ export class ProductsService {
   
   //Anything added to compare -> kept in localStorage (as string)
   //get products from commpare (in localStorage) as object -> JSON.parse()
-  products = JSON.parse(localStorage.getItem("compareItem") || '{}') || [];
+  products = JSON.parse(localStorage.getItem("compareItem")) || [];
   //------------------------------------------------------------------------
 
   //Dependency Resolution
@@ -42,7 +42,7 @@ export class ProductsService {
   //------------------------------------------------------
   //allProdducts()
   private allProducts():Observable<Product[]>{
-    let data = this.dataService.get(Global.BASE_APT_PATH + "ProductMaster/GetProductList");
+    let data = this.dataService.get(Global.BASE_APT_PATH + "ProductMaster/GetProductList/");
     return data;
   }
 
@@ -105,7 +105,7 @@ export class ProductsService {
   //------------------------------------------------------
   // Check if item(product) is already present in compare
   //------------------------------------------------------
-  hasProducts(product:Product){
+  hasProducts(product:Product):boolean{
     let item = this.products.find((item:Product) => item.id === product.id);
     //if item found -> return item (!undefined -> true)
     //else return undefined (false)
@@ -118,17 +118,17 @@ export class ProductsService {
   // we only compare 4 products at a time
   addToCompare(product:Product){
     if(!this.hasProducts(product)){
-      if(this.products.length<4){
+      if(this.products.length < 4){
         //add product -> products[]
         this.products.push(product);
 
         //update compare -> localStorage
-        localStorage.setItem("cartItem", JSON.stringify(this.products));
+        localStorage.setItem("compareItem", JSON.stringify(this.products));
         
         //toastr success notification
         this.toastr.success("This product successfully added to compare list!!", "Compare");
       }else{
-        this.toastr.error("you can add maximum 4 products are in compare list", "Compare");
+        this.toastr.error("You can add maximum 4 products are in compare list", "Compare");
       }
     }else{
       this.toastr.error("This product already added to compare list", "Compare");
@@ -156,7 +156,7 @@ export class ProductsService {
     this.products.splice(index,1);
 
     //update compare (localStorage)
-    localStorage.setItem("cartItem", JSON.stringify(this.products));
+    localStorage.setItem("compareItem", JSON.stringify(this.products));
   }
 
 }
