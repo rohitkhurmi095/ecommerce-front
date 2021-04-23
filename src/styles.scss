@@ -2,3 +2,14 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+//-------------------------------------------
+//** PRODUCT IMAGE - shop/product component**
+//-------------------------------------------
+// /home/left-sidebar/product/10
+//ADJUSTING height & width of zoom image
+//size of zoom image on hover
+.ngxImageZoomThumbnail{
+    max-width: 500px !important;
+    max-height:500px !important;
+}

@@ -7,7 +7,6 @@ import { ProductComponent } from './product/product.component';
 import { LogoComponent } from './home/logo/logo.component';
 import { CollectionBannerComponent } from './home/collection-banner/collection-banner.component';
 import { ParallaxBannerComponent } from './home/parallax-banner/parallax-banner.component';
-import { SliderComponent } from './home/slider/slider.component';
 import { ProductSliderComponent } from './home/product-slider/product-slider.component';
 import { ProductTabComponent } from './home/product-tab/product-tab.component';
 import { CartComponent } from './product/cart/cart.component';
@@ -22,6 +21,7 @@ import { CollectionLeftSidebarComponent } from './product/collection/collection-
 import { BrandComponent } from './product/collection/filter/brand/brand.component';
 import { ColorComponent } from './product/collection/filter/color/color.component';
 import { PriceComponent } from './product/collection/filter/price/price.component';
+import {SliderComponent} from './home/slider/slider.component';
 
 //forms Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,10 +35,11 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { SidebarComponent } from './product/product-details/sidebar/sidebar.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, LogoComponent, CollectionBannerComponent, ParallaxBannerComponent, SliderComponent, ProductSliderComponent, ProductTabComponent, CartComponent, WishlistComponent, CheckoutComponent, ProductCompareComponent, ProductLeftSidebarComponent, SuccessComponent, CategoriesComponent, NewProductComponent, CollectionLeftSidebarComponent, BrandComponent, ColorComponent, PriceComponent],
+  declarations: [HomeComponent, SliderComponent,ProductComponent, LogoComponent, CollectionBannerComponent, ParallaxBannerComponent, ProductSliderComponent, ProductTabComponent, CartComponent, WishlistComponent, CheckoutComponent, ProductCompareComponent, ProductLeftSidebarComponent, SuccessComponent, CategoriesComponent, NewProductComponent, CollectionLeftSidebarComponent, BrandComponent, ColorComponent, PriceComponent, SidebarComponent],
   imports: [
     CommonModule,
     ShopRoutingModule,

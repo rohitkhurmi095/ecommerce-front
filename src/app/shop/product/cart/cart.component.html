@@ -68,7 +68,7 @@
                         <tr *ngFor="let item of shoppingCartItems">
                             <!-- IMAGE -->
                             <td>
-                                <!-- '/home/left-sidebar/product/:porudctId'-->
+                                <!-- '/home/left-sidebar/product/:productId'-->
                                 <a [routerLink]="['/home/left-sidebar/product',item.product.id]">
                                     <img alt="image" [src]="item.product.pictures[0]">
                                 </a>

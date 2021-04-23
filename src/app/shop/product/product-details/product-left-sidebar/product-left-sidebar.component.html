@@ -16,7 +16,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a>Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/home/shop">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Product</li>
                     </ol>
                 </nav>
@@ -35,8 +35,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 collection-filter">
-                    
-                    Side bar here
+
+                    <!--========================-->
+                    <!-- SIDEBAR COMPONENT here -->
+                    <!--========================-->
+                    <app-sidebar></app-sidebar>
+
+                    <!----------------------------->
                 
                 </div>
                 <div class="col-lg-9 col-sm-12 col-xs-12">
@@ -50,134 +55,201 @@
                             </div>
                         </div>
 
+
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-12 p-0">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-6 rtl-text">
-                            <div class="product-right">
-                                <h2> Product Name </h2>
-                                <h4>
-                                    <del> Sale price </del>
-                                    <span>discount % off</span>
-                                </h4>
-                                <h3>Product Price </h3>
                                 
-                                <div class="pro_inventory">
-                                    <p class="active"> Hurry! We have only one product in stock.</p>
-                                    <div class="inventory-scroll nostripes active">
-                                        <span style="width: 95%;"></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="product-description border-product">
-                                    <div class="size-box">
-                                        <ul>
-                                            <li>
-                                                <a> L </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h5 class="avalibility"><span>In Stock</span></h5>
-                                    <h5 class="avalibility"><span>Out of Stock</span></h5>
-                                    <h6 class="product-title">quantity</h6>
-                                    <div class="qty-box">
-                                        <div class="input-group">
-                                            <span class="input-group-prepend">
-                                                <button type="button" class="btn quantity-left-minus" data-type="minus" data-field="">
-                                                    <i class="ti-angle-left"></i>
-                                                </button>
-                                            </span>
-                                            <input type="text" name="quantity" class="form-control input-number">
-                                            <span class="input-group-prepend">
-                                                <button type="button" class="btn quantity-right-plus" data-type="plus" data-field="">
-                                                    <i class="ti-angle-right"></i>
-                                                </button>
-                                            </span>
+                                <!-- MAIN PRODUCT IMAGE (THUMBNAIL)-->
+                                <!--========================-->
+                                <!-- NGX SLICK CAROUSEL here -->
+                                <!--=========================-->
+                                <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig" class="product-slick">
+                                    <div ngxSlickItem *ngFor="let image of product.pictures">
+                                        <div>
+                                            <!------------------------->
+                                            <!-- NGX IMAGE ZOOM here -->
+                                            <!------------------------->
+                                            <lib-ngx-image-zoom 
+                                                [thumbImage]="image" [fullImage]="image"
+                                                [magnification]="1" [enableScrollZoom]="true" 
+                                                [enableLens]="true" [lensWidth]="200" [lensHeight]="200"
+                                                zoomMode="hover">
+                                            </lib-ngx-image-zoom>
+                                            <!------------------------->
                                         </div>
                                     </div>
-                                </div>
+                                </ngx-slick-carousel>
+
                                 
-                                <div class="product-buttons">
-                                    <a class="btn btn-solid">add to cart</a>
-                                    <a class="btn btn-solid">buy now</a>
-                                </div>
-                                
-                                <div class="border-product">
-                                    <h6 class="product-title">product details</h6>
-                                    <p> Product Short Details </p>
-                                </div>
-                                
-                                <div class="border-product">
-                                    <div class="product-icon">
-                                        <form class="d-inline-block">
-                                            <button class="wishlist-btn">
-                                                <i class="fa fa-heart"></i>
-                                                <span class="title-font">
-                                                    Add To WishList
-                                                </span>
-                                            </button>
-                                        </form>
+                                <div class="row">
+                                    <div class="col-12 p-0">
+                                        <!-- OTHER PRODUCT IMAGES SLIDER -->
+                                        <!--========================-->
+                                        <!-- NGX SLICK CAROUSEL here -->
+                                        <!--=========================-->
+                                        <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideNavConfig" class="slider-nav">
+                                            <div ngxSlickItem *ngFor="let image of product.pictures">
+                                                <div>
+                                                    <img [src]="image" class="img-fluid" alt="image"/>
+                                                </div>
+                                            </div>
+                                        </ngx-slick-carousel>
+                                        <!----------------------------->
                                     </div>
                                 </div>
+                            </div>
+                        
+                            <div class="col-lg-6 rtl-text">
+                                <div class="product-right">
+                                    <!-- NAME -->
+                                    <h2> {{product.name}} </h2>
+                                    <!-- SALE PRICE & DISCOUNT -->
+                                    <h4>
+                                        <del> {{product.salePrice | currency:productService?.currency:'symbol' }} </del>
+                                        <span>{{product.discount}} % off</span>
+                                    </h4>
+                                    <!-- ACTUAL PRICE -->
+                                    <h3> {{product.price | currency:productService?.currency:'symbol' }} </h3>
+                                
+                                    <!-- STOCK : only show if stock!=0 && stock<=5 -->
+                                    <div class="pro_inventory" *ngIf="product.stock!=0 && product.stock<=5">
+                                        <p class="active"> Hurry! We have only {{product.stock}} product in stock.</p>
+                                        <div class="inventory-scroll nostripes active">
+                                            <span style="width: 95%;"></span>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- DESCRIPTION -->
+                                    <div class="product-description border-product">
+                                        <!-- SIZE: changeSizeVariant() to change size + apply 'active' class-->
+                                        <div class="size-box">
+                                            <ul>
+                                                <li *ngFor="let size of product.size" [ngClass]="{'active': selectedSize == size}">
+                                                    <a (click)="changeSizeVariant(size)"> {{size}} </a>
+                                                </li>
+                                            </ul>
+                                        </div>
 
+                                        <!-- AVAILABILITY : inStock(qty<=stock) outOfStock(qty>stock)-->
+                                        <!-- qty = counter -->
+                                        <h5 class="avalibility" *ngIf="counter<=product.stock"><span>In Stock</span></h5>
+                                        <h5 class="avalibility" *ngIf="counter>product.stock"><span>Out of Stock</span></h5>
+                                        <!-- QUANTITY -->
+                                        <h6 class="product-title">quantity</h6>
+                                        <div class="qty-box">
+                                            <div class="input-group">
+                                                <!-- DECREMENT quantity -->
+                                                <span class="input-group-prepend">
+                                                    <button type="button" class="btn quantity-left-minus" data-type="minus" data-field="" (click)="decrement()">
+                                                        <i class="ti-angle-left"></i>
+                                                    </button>
+                                                </span>
+                                                <!-- show quantity -->
+                                                <input type="text" name="quantity" class="form-control input-number" disabled [(ngModel)]="counter">
+                                                <!-- INCREMENT quantity-->
+                                                <span class="input-group-prepend">
+                                                    <button type="button" class="btn quantity-right-plus" data-type="plus" data-field="" (click)="increment()">
+                                                        <i class="ti-angle-right"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- BUTTONS (show only if stock > quantity(counter))-->
+                                    <div class="product-buttons">
+                                        <!-- ADD TO CART-->
+                                        <a class="btn btn-solid" (click)="addToCart(product,counter)"  [class.disabled]="counter>product.stock">add to cart</a>
+                                        <!-- BUY NOW-->
+                                        <a class="btn btn-solid"  (click)="buyNow(product,counter)" [class.disabled]="counter>product.stock">buy now</a>
+                                    </div>
+                                
+                                    <!-- SHORT DETAILS-->
+                                    <div class="border-product">
+                                        <h6 class="product-title">product details</h6>
+                                        <p> {{product.shortDetails}} </p>
+                                    </div>
+                                
+                                    <!-- WISHLIST-->
+                                    <div class="border-product">
+                                        <div class="product-icon">
+                                            <form class="d-inline-block">
+                                                <button class="wishlist-btn" (click)="addToWishlist(product)">
+                                                    <i class="fa fa-heart"></i>
+                                                    <span class="title-font">
+                                                        Add To WishList
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                                         
                 
-                <section class="tab-product m-0">
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-12">
-                            <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">
-                                        <i class="icofont icofont-ui-home"></i>Product Description
-                                    </a>
-                                    <div class="material-border"></div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false">
-                                        <i class="icofont icofont-man-in-glasses"></i> Short details 
-                                    </a>
-                                    <div class="material-border"></div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-top-tab" data-toggle="tab" href="#top-contact" role="tab" aria-selected="false">
-                                        <i class="icofont icofont-contacts"></i>Video
-                                    </a>
-                                    <div class="material-border"></div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="review-top-tab" data-toggle="tab" href="#top-review" role="tab" aria-selected="false">
-                                        <i class="icofont icofont-contacts"></i>Write Review
-                                    </a>
-                                    <div class="material-border"></div>
-                                </li>
-                            </ul>
+                    <!---------------->
+                    <!-- REVIEW TAB -->
+                    <!---------------->
+                    <section class="tab-product m-0">
+                        <!-- title -->
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">
+                                            <i class="icofont icofont-ui-home"></i>description
+                                        </a>
+                                        <div class="material-border"></div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false">
+                                            <i class="icofont icofont-man-in-glasses"></i> short details
+                                        </a>
+                                        <div class="material-border"></div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-toggle="tab" href="#top-contact" role="tab" aria-selected="false">
+                                            <i class="icofont icofont-contacts"></i>Video
+                                        </a>
+                                        <div class="material-border"></div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="review-top-tab" data-toggle="tab" href="#top-review" role="tab" aria-selected="false">
+                                            <i class="icofont icofont-contacts"></i>Write Review
+                                        </a>
+                                        <div class="material-border"></div>
+                                    </li>
+                                </ul>
                             
-                            <div class="tab-content nav-material" id="top-tabContent">
-                                <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                                    <p>description</p>
-                                </div>
-                                <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-                                    <p>short Details</p>
-                                    <div class="single-product-tables"></div>
-                                </div>
-                                <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
-                                    <div class="mt-3 text-center">  
-                                        Show video here
+                                <!-- details -->
+                                <div class="tab-content nav-material" id="top-tabContent">
+                                    <!-- DETAILS -->
+                                    <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                                        <p>{{product.description}}</p>
                                     </div>
-                                </div>
+                                    <!-- SHORT DETAILS -->
+                                    <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
+                                        <p>{{product.shortDetails}}</p>
+                                        <div class="single-product-tables"></div>
+                                    </div>
+                                    <!-- VIDEO -->
+                                    <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
+                                        <!-- video player -->
+                                        <div class="mt-3 text-center">  
+                                            <video width="320" height="240" controls>
+                                                <source src="" type="video/mp4">
+                                              </video>
+                                        </div>
+                                    </div>
 
-                                <div class="tab-pane fade" id="top-review" role="tabpanel"  aria-labelledby="review-top-tab">
-                                    <form class="theme-form">
-                                        <div class="form-row">
+                                    <!-- REVIEW FORM -->
+                                    <!-- NOTE: SUBMIT FOR REVIEW FORM NOT CREATE as we dont have review API -->
+                                    <div class="tab-pane fade" id="top-review" role="tabpanel"  aria-labelledby="review-top-tab">
+                                        <form class="theme-form">
+                                            <div class="form-row">
                                                 <div class="col-md-6">
                                                     <label for="name">Name</label>
                                                     <input type="text" class="form-control" id="name" placeholder="Enter Your name" required>
