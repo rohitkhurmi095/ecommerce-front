@@ -1,1 +1,21 @@
-<p>color works!</p>
+<!--=============-->
+<!-- COLOR FILTER-->
+<!----------------->
+<div class="collection-collapse-block open">
+    <h3 class="collapse-block-title">colors</h3>
+    <div class="collection-collapse-block-content">
+        <div class="color-selector">
+            <ul>
+                <!-- activeItem(currentColor) filter.color(color to filter)-->
+                <!-- show li as CHECKBOX with CSS [ngClass]="filter.color = green"-->
+                <!-- class 'active' is applied onClick on <li> to change color -->
+                <!--if same color is clicked again - uncheckBox & send {} ,activeItem == filter.color? {}: filter-->
+                <!-------------------------------------------------------------------->
+                <li *ngFor="let filter of colorsFiltersInput" [ngClass]="filter.color"
+                    [class.active]="activeItem == filter.color"
+                    (click)="changeColor(activeItem == filter.color ? {} : filter)">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

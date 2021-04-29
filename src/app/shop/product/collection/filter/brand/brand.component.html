@@ -1,1 +1,22 @@
-<p>brand works!</p>
+<!--=============-->
+<!-- BRAND FILTER-->
+<!----------------->
+<!-- Based on this filter data gets filtered in:-->
+<!-- /home/left-sidebar/collection/men -->
+
+<div class="collection-collapse-block open">
+    <h3 class="collapse-block-title collapse-block-title1">brand</h3>
+    <div class="collection-collapse-block-content collection-collapse-block-content1">
+        <div class="collection-brand-filter">
+
+            <!-- CHECKBOX -->
+            <div class="custom-control custom-checkbox collection-filter-checkbox"
+                *ngFor="let filter of tagsFiltersInput">
+                <input type="checkbox" class="custom-control-input" [value]="filter.brand" [id]="filter.brand" 
+                        (change)="checkedFilter($event)">
+                <label class="custom-control-label" for="{{filter.brand}}"> {{filter.brand}} </label>
+            </div>
+
+        </div>
+    </div>
+</div>

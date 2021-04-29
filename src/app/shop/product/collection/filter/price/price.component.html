@@ -1,1 +1,21 @@
-<p>price works!</p>
+<!--=============-->
+<!-- PRICE FILTER-->
+<!----------------->
+<div class="collection-collapse-block border-0 open">
+    <h3 class="collapse-block-title collapse-block-title3">price</h3>
+    <div class="collection-collapse-block-content collection-collapse-block-content3">
+        <div class="collection-brand-filter">
+            <div class="mt-5">
+                <!---------------------------->
+                <!-- NGX SLIDER PRICE RANGE -->
+                <!---------------------------->
+                <!-- NOT CHANGE in range is not reflected immeadetly as event is filred-->
+                <!-- use userChangeEnd(when user suddenly stops at a particular range) instead of click-->
+                <!---------------------------------------------------------------------------------------->
+                <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+                    (userChangeEnd)="priceChanged($event)"    >
+                </ngx-slider>
+            </div>
+        </div>
+    </div>
+</div>

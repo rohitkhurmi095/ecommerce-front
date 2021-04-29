@@ -1,1 +1,35 @@
-<p>new-product works!</p>
+<!--============-->
+<!-- NEW PRODUCT -->
+<!--============-->
+<div class="theme-card">
+    <h5 class="title-border">new Product</h5>
+
+    <!--------------------->
+    <!-- PRODUCTS SLIDER -->
+    <!--------------------->
+    <!-- link: '/home/left-sidebar/product/:proudctId'-->
+    <ngx-slick-carousel class="offer-slider" #slickModal="slick-carousel">
+        <div ngxSlickItem *ngFor="let product of products"> 
+            
+            <!-- LOOP:div for all products -->
+            <!-- splice -->
+            <div class="media" *ngFor="let pt of products |slice:0:3">
+                <a [routerLink]="['/home/left-sidebar/product',pt.id]">
+                    <img alt="new product" class="img-fluid" [src]="pt.pictures[0]" />
+                </a>
+                <div class="media-body align-self-center">
+                    <!-- barRating -->
+                    <bar-rating [rate]="5" [readOnly]="true"></bar-rating>
+                    <!-- Product Name -->
+                    <a [routerLink]="['/home/left-sidebar/product',pt.id]">
+                        <h6>{{pt.name}}</h6>
+                    </a>
+                    <!-- Product Price -->
+                    <h4>{{pt.price | currency:productService?.currency : 'symbol'}}</h4>
+                </div>
+            </div>
+
+        </div>
+    </ngx-slick-carousel>
+    <!------------------->
+</div>

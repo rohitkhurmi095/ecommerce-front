@@ -76,7 +76,7 @@ export class ProductLeftSidebarComponent implements OnInit {
         //single product
         this.product = res;
         
-        //console.log('PRODUCT: ',this.product);
+        console.log('PRODUCT: ',this.product);
       });
     });
     //-----------------------------------------------------------------------------------
