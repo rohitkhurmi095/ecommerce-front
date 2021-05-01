@@ -88,9 +88,9 @@ export class CheckoutComponent implements OnInit {
     //---------------
     //CHECKOUT ITEMS
     //---------------
-    this.cartService.getCartItems().subscribe(res => {
+    this.cartService.getOrderCartItems().subscribe(res => {
       this.checkOutItems = res;
-      //console.log('CHECKOUT ITEMS: ',this.checkoutItems);
+      console.log('CHECKOUT ITEMS: ',this.checkOutItems);
     });
     //----------------------
     //calculate TOTAL AMOUNT
@@ -126,7 +126,10 @@ export class CheckoutComponent implements OnInit {
           key: 'pk_test_IMfLDyTjBvG9AK7MNtHntboG00XQFgMOiE',//need to change
           locale: 'auto',
           token: function () {
-
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+            //console.log(token);
+            //alert('Token Created!!');
           }
         });
       }
@@ -210,7 +213,7 @@ export class CheckoutComponent implements OnInit {
         this.checkoutForm.reset();
 
         //3.CLEAR allItems from cart
-       //this.cartService.clearAllItemsFromCart();
+       this.cartService.clearAllItemsFromCart();
       }else{
         //error notification
         this._toastr.error(objdata.errors[0], "Payment Master");

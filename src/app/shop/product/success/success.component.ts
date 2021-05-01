@@ -25,8 +25,8 @@ export class SuccessComponent implements OnInit {
     //createOrder( product,shippingDetails,orderId,totalAmount,expectedDate,paymentDate)
     this.orderDetails = this.orderService.getOrderDetails();
     
-    console.log('ORDER DETAILS: ',this.orderDetails);
-    console.log('SHIPPING DETAILS FORM DATA: ',this.orderDetails.shippingDetails);
+    //console.log('ORDER DETAILS: ',this.orderDetails);
+    //console.log('SHIPPING DETAILS FORM DATA: ',this.orderDetails.shippingDetails);
   }
 
 }

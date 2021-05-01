@@ -37,10 +37,25 @@ export class CartService {
   cartItems: BehaviorSubject<cartItem[]> = new BehaviorSubject<cartItem[]>([]);
   //------------------------------------------------------------------------
 
+  //When we place order -> empty cart
+  //bu orderDetails(cart/success) page contains data from cart -> use another array[] to show this data
+  //SHOW THIS CART ITEM when we placed order & item is removed from the cart
+  orderProducts = JSON.parse(localStorage.getItem("cartItem")) || [];
+
   //toastr notification
   constructor(private toastr:ToastrService) { }
 
 
+  //======================
+  // GET ORDER CART_ITEMS
+  //======================
+  // for checkout/success Page
+  getOrderCartItems():Observable<cartItem[]>{
+    return of(this.orderProducts);
+  }
+
+
+  
   //====================
   // GET ITEM FROM CART
   //====================

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../pages/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './product/cart/cart.component';
 import { CheckoutComponent } from './product/checkout/checkout.component';
@@ -29,7 +30,7 @@ const routes: Routes = [
 
   //-- checkout --
   //url: /home/checkout
-  {path:'checkout',component:CheckoutComponent},
+  {path:'checkout',component:CheckoutComponent, canActivate:[AuthGuard]},
   //url: /home/checkout/success
   { path: 'checkout/success', component: SuccessComponent },
   
