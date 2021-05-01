@@ -23,23 +23,67 @@
         </li> 
 
 
-        <!--_______________________-->
-        <!----- SHOPPING CART      -->
-        <!--_______________________-->
-        <li class="onhover-div mobile-cart"> 
+
+        <!--========================-->
+        <!----- SHOPPING CART(theme)-->
+        <!--========================-->
+        <!-- for cart show -->
+        <li class="onhover-div mobile-cart">
             <div>
                 <a routerLink="/home/cart">
-                    <img src="assets/images/icon/cart.png" class="img-fluid" alt=""> <i class="ti-shopping-cart"></i>
+                    <img src="assets/images/icon/cart.png" class="img-fluid" alt="">
+                    <i class="ti-shopping-cart"></i>
                 </a>
-            </div> 
+            </div>
+            
+            <!-- if no product(item) is there in cart-->
+            <ul class="show-div shopping-cart" *ngIf="!shoppingCartItems.length">
+                <h5>Your cart is currently empty.</h5>
+            </ul>
+            
+            <!-- No. of items in cart-->
+            <span class="cart_qty_cls">{{shoppingCartItems.length}}</span>
 
-            <!--Dropdown on hover -->
-            <div class="show-div shopping-cart"> 
-                <ul> 
-                    <h5>Your cart is currently empty.</h5>
-                </ul> 
-            </div> 
-        </li> 
+            <!-- IF CART HAS ITEMS -->
+            <ul class="show-div shopping-cart" *ngIf="shoppingCartItems.length">
+
+                <!-- loop through all shoppingCartItems-->
+                <li *ngFor="let item of shoppingCartItems">
+                    <div class="media">
+                        <!-- '/home/left-sidebar/product/product.id'-->
+                        <a [routerLink]="['/home/left-sidebar/product',item.product.id]">  
+                            <img class="mr-3"[src]="item.product.pictures[0]" alt="image">
+                        </a>
+                        <div class="media-body">
+                            <a>
+                                <h4>{{item.product.name}}</h4>
+                            </a>
+                            <h4><span> {{item.quantity}} x {{item.product.price |currency:productService?.currency:'symbol'}} </span></h4>
+                        </div>
+                    </div>
+                    
+                    <!-- REMOVE FROM CART-->
+                    <div class="close-circle">
+                        <a (click)="removeItem(item)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
+                </li>
+                <!-- TOTAL AMOUNT-->
+                <li>
+                    <div class="total">
+                        <!-- curreny pipe used for amount(symbol set in productService)-->
+                        <h5>subtotal : <span> {{getTotal()|async |currency:productService?.currency:'symbol'}}</span></h5>
+                    </div>
+                </li>
+                <!-- BUTTONS -->
+                <li>
+                    <div class="buttons">
+                        <a class="view-cart" routerLink="/home/cart">view cart</a>
+                        <a class="checkout" routerLink="/home/checkout">checkout</a>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <!-- cart theme END -->
 
     </ul> 
 </div>

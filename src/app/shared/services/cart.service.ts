@@ -23,6 +23,9 @@ import {Product} from '../classes/product';
   providedIn: 'root'
 })
 export class CartService {
+  getItems() {
+    throw new Error('Method not implemented.');
+  }
 
   //------------------------------------------------------------------------
   //Anything added to cart -> kept in localStorage (as string)

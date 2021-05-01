@@ -80,8 +80,8 @@ export class AuthService {
   loggedOut(){
     
     //remove userDetails from localStorage
-    //CLEAR localStorage
-    localStorage.clear();
+    //CLEAR localStorage - only remove userDetails NOT CART/COMPARE/WISHLIST
+    localStorage.removeItem('userDetails');
 
     //set currentUserDetails = null & loggedIn = false (Behaviour Subjects)
     this.currentUserSubject.next(null);

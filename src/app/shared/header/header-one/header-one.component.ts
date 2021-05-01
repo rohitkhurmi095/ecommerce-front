@@ -5,6 +5,8 @@ import { LandingFixService } from 'src/app/shared/services/landing-fix.service';
 
 //JQUERY
 import * as $ from 'jquery';
+import { cartItem } from '../../classes/cart-item';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header-one',
@@ -13,11 +15,29 @@ import * as $ from 'jquery';
 })
 export class HeaderOneComponent implements OnInit {
 
-  constructor(private landingFix:LandingFixService) { }
+  //CART ITEMS
+  shoppingCartItems:any[] = [];
+
+  //landingFixService
+  constructor(private landingFix:LandingFixService, private CartService:CartService) { }
 
   ngOnInit(): void {
     //LOADING SCRIPT FOR SMARTMENU (Only for this component)
     $.getScript('assets/js/menu.js');
+
+
+    //===============
+    //GET CART ITEMS
+    //===============
+    this.CartService.getCartItems().subscribe(res=>{
+      this.shoppingCartItems = res;
+      
+    //console.log('Shoping CartItems: ',this.shoppingCartItems);
+    //[{product: {…}, quantity: 2},{product: {…}, quantity: 2}]
+    //cartItem.quantity = quantity
+    //cartItem.product.price = price
+    //total = cartItem.quantity * cartItem.product.price 
+    });
   }
 
   
